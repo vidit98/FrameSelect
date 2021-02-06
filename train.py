@@ -37,8 +37,8 @@ class Solver:
     self.train_loader = train_loader
     self.test_loader = test_loader
 
-    self.model = selector_net()
-    self.optimizer = torch.optim.Adam(itertools.chain(self.model.parameters(), self.fc1.parameters(), self.fc2.parameters()), self.lr)
+    self.model = selector_net().to(device)
+    self.optimizer = torch.optim.Adam(self.model.parameters(), self.lr)
     self.lr_sch = get_scheduler(self.optimizer, args)
 
 
@@ -53,10 +53,10 @@ class Solver:
     return total_norm
 
   def test(self):
-    dataloader = torch.utils.data.DataLoader(self.test_loader, batch_size=1, shuffle=True, num_workers=2)
     avg_loss = 0.0
     acc = 0.0
     self.model.eval()
+    dataloader = self.test_loader
     for itr, data in tqdm(enumerate(dataloader)):
 
       img1, img2, label1, label2 = data["input1"], data["input2"], data["output1"], data["output2"] 
@@ -117,7 +117,7 @@ class Solver:
         self.optimizer.zero_grad()
         loss.backward()
         
-        norm = self.get_norm(itertools.chain(self.model.parameters(), self.fc1.parameters(), self.fc2.parameters()))
+        norm = self.get_norm(self.model.parameters())
         self.optimizer.step()
 
         if(itr%self.log_step == 0):
@@ -172,43 +172,45 @@ def get_scheduler(optimizer, opt):
 
 
 
-# parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser()
 
-# parser.add_argument('--train_dataset_path',
-#           default='./data')
-# parser.add_argument('--val_dataset_path',
-#           default='./data')
-# parser.add_argument('--load',
-#           default=0)
-# parser.add_argument('--batch_size',
-#           default=64)
-# parser.add_argument('--epochs', default=21, type=int,
-#           help='epochs to train for')
-# parser.add_argument('--lr', default=0.0001, type=float, help='LR')#used 0.01
-# parser.add_argument('--lr_policy', default="linear", type=str, help='LR policy')
-# parser.add_argument('--log_step', type=int, default=10,
-#           help='frequency to display')
-# parser.add_argument('--ckpt_step', type=int, default=2,
-#           help='frequency to display')
-# parser.add_argument('--checkpoint_dir', type=str, default="checkpoint",
-#           help='frequency to display')
-# parser.add_argument('--log_dir', type=str, default="logs",
-#           help='frequency to display')
-# parser.add_argument('--name', type=str, default="initial_tes",
-#           help='name')
+parser.add_argument('--train_dataset_path',
+          default='./data')
+parser.add_argument('--val_dataset_path',
+          default='./data')
+parser.add_argument('--load',
+          default=0)
+parser.add_argument('--batch_size',
+          default=64)
+parser.add_argument('--epochs', default=2, type=int,
+          help='epochs to train for')
+parser.add_argument('--lr', default=0.0001, type=float, help='LR')#used 0.01
+parser.add_argument('--lr_policy', default="linear", type=str, help='LR policy')
+parser.add_argument('--log_step', type=int, default=10,
+          help='frequency to display')
+parser.add_argument('--ckpt_step', type=int, default=2,
+          help='frequency to display')
+parser.add_argument('--checkpoint_dir', type=str, default="checkpoint",
+          help='frequency to display')
+parser.add_argument('--log_dir', type=str, default="logs",
+          help='frequency to display')
+parser.add_argument('--name', type=str, default="initial_tes",
+          help='name')
 
-# args = parser.parse_args()
-# print("Input arguments:")
-# for key, val in vars(args).items():
-#   print("{:16} {}".format(key, val))
+args = parser.parse_args()
+print("Input arguments:")
+for key, val in vars(args).items():
+  print("{:16} {}".format(key, val))
 
 
-# test_loader = DAVIS_MO_Test(imset="val.txt")
-# train_loader = DAVIS_MO_Test()
-# print("Loaded")
-# dataloader = torch.utils.data.DataLoader(train_loader, batch_size=args.batch_size, shuffle=True, num_workers=2)
-# print("Ready")
-# solve = Solver(args, dataloader, test_loader)
+test_loader = DAVIS_MO_Test(imset="val.txt")
+train_loader = DAVIS_MO_Test()
+print("Loaded")
+tr_dataloader = torch.utils.data.DataLoader(train_loader, batch_size=args.batch_size, shuffle=True, num_workers=2)
+te_dataloader = torch.utils.data.DataLoader(test_loader, batch_size=1, shuffle=True, num_workers=2)
 
-# solve.train()
+print("Ready")
+solve = Solver(args, tr_dataloader, te_dataloader)
+
+solve.train()
 
