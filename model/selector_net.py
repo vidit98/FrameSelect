@@ -9,7 +9,7 @@ from torchvision import transforms
 
 class selector_net(nn.Module):
   def __init__(self):
-    super(Solver, self).__init__()
+    super(selector_net, self).__init__()
     self.model = resnet18().to("cuda:0")
     self.fc1 = nn.Linear(1024, 512).to("cuda:0")
     self.dropout1 = nn.Dropout(p=0.2).to("cuda:0")
