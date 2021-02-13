@@ -27,7 +27,7 @@ import random
 ### My libs
 from dataset import DAVIS_MO_Test
 from model.stm import STM
-from model.selector_net  import selector_net
+from sn_utils import process_single_image
 
 torch.set_grad_enabled(False) # Volatile
 
@@ -134,7 +134,7 @@ def update_pred(Es, t, seq_name, no_obj, tot_obj):
             used += [idw]
 
             #call selector net to get the probability for both mask
-            prob = selector_net(rgb_img, np.uint8(curr_pred==l), np.uint8(mask_curr_pred==idw))
+            prob = process_single_image(rgb_img, np.uint8(curr_pred==l), np.uint8(mask_curr_pred==idw))
             
             #update prediction if mask rcnn probability is significantly better
             if prob[1] < prob[0] and prob[0] - prob[1] >= 0.45:
