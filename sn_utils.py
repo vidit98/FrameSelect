@@ -10,8 +10,7 @@ from torchvision import transforms
 from torch.optim import lr_scheduler
 from torch.utils.tensorboard import SummaryWriter
 import argparse
-from dataset_train import DAVIS_MO_Test
-from models import resnet18
+
 from models.selector_net import selector_net
 import os
 import itertools
