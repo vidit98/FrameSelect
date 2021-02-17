@@ -37,10 +37,12 @@ def get_arguments():
     parser.add_argument("-s", type=str, help="set", required=True)
     parser.add_argument("-D", type=str, help="path to data",default='/local/DATA')
     parser.add_argument("-v", type=str, help="name of video",default='')
+    parser.add_argument("-m", type=str, help="path to weights of STM",default='checkpoint/STM_weights.pth')
     return parser.parse_args()
 
 args = get_arguments()
 
+pth_path = args.m#'STM_weights.pth'
 GPU = args.g
 SET = args.s
 DATA_ROOT = args.D
@@ -229,7 +231,6 @@ if torch.cuda.is_available():
     model.cuda()
 model.eval() # turn-off BN
 
-pth_path = 'STM_weights.pth'
 print('Loading weights:', pth_path)
 model.load_state_dict(torch.load(pth_path))
 

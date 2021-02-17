@@ -21,7 +21,7 @@ default_width = 512
 
 solve = selector_net()
 solve.eval()
-pth_path = "/home/vidit/models/UnVOS/checkpoint/soft_lab/epoch2/model.ckpt"
+pth_path = "checkpoint/model.ckpt"
 model_dict = torch.load(pth_path)
 
 solve.model.load_state_dict(model_dict["resnet"])
