@@ -26,3 +26,24 @@ To run the code on other datasets, change the structure of data same as DAVIS da
 ## Training
 
 
+@bibtex 
+```
+@inproceedings{garg2021mask,
+  title={Mask Selection and Propagation for Unsupervised Video Object Segmentation},
+  author={Garg, Shubhika and Goel, Vidit},
+  booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
+  pages={1680--1690},
+  year={2021}
+}
+```
+```
+@article{DAVIS2020-Unsupervised-1st,
+              author = {S. Garg, V. Goel, S. Kumar},
+              title = {Unsupervised Video Object Segmentation using Online Mask Selection and Space-time Memory Networks},
+              journal = {The 2020 DAVIS Challenge on Video Object Segmentation - CVPR Workshops},
+              year = {2020}
+}
+```
+            
+
+
