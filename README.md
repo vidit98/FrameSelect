@@ -26,7 +26,7 @@ To run the code on other datasets, change the structure of data same as DAVIS da
 ## Training
 
 
-@bibtex 
+Please cite the following papers if the work was helpful.
 ```
 @inproceedings{garg2021mask,
   title={Mask Selection and Propagation for Unsupervised Video Object Segmentation},
