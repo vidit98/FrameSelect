@@ -11,10 +11,10 @@ README.md will be updated soon.
 ## Prerequisites
 
 ## Inferencing
-To run the code you will be needing masks from Mask R-CNN and DAVIS dataset. The pre-trained model of STM can be downloaded from [here](https://github.com/seoungwugoh/STM) and selector_net from [here](https://drive.google.com/file/d/1PRdYnrSgvHmfi9G85pPbqhD2Ns0nm4NS/view?usp=sharing). The output masks of Mask R-CNN should be numbered sequentially starting from 0 representing background. 
+To run the code you will be needing masks from Mask R-CNN and DAVIS dataset. The pre-trained weights of STM can be downloaded from [here](https://github.com/seoungwugoh/STM) and selector_net from [here](https://drive.google.com/file/d/1PRdYnrSgvHmfi9G85pPbqhD2Ns0nm4NS/view?usp=sharing). The output masks of Mask R-CNN should be numbered sequentially starting from 0 representing background. 
 
 1. Place the masks in `path_to_data_dir/Annotations/480p` and the DAVIS frames in `path_to_data_dir/JPEGImages/480p`. 
-2. Place the downloaded weights of STM and selecto_net in `checkpoints` folder. There are 3 parts of the method criterion 1, criteria 2, stage 3. 
+2. Place the downloaded weights of STM and selecto_net in `checkpoint` folder. There are 3 parts of the method criterion 1, criteria 2, stage 3. 
 3. Evaluate using criterion 1 by executing `run.sh`(change the datapath).
 4. Change the python script name in `run.sh` to `eval_DAVIS_crit2.py` to evaluate using criterion 2. 
 5. Finally, run `eval_stage_3.py` using command below by giving relavent paths of masks generated using criterion 1 and criterion 2. 
