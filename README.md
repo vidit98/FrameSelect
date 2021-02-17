@@ -19,7 +19,7 @@ To run the code you will be needing masks from Mask R-CNN and DAVIS dataset. The
 4. Change the python script name in `run.sh` to `eval_DAVIS_crit2.py` to evaluate using criterion 2. 
 5. Finally, run `eval_stage_3.py` by giving relavent paths of masks generated using criterion 1 and criterion 2. 
 ### Note
-Selector net has been trained using Mask R-CNN outputs and the outputs of Mask R-CNN can highly vary depending to various implementations and even different hyperparameter in the same implementation. Hence, to get the true results of the method it is desirable to train the selector_net using the object detection and segmentation network that you are using. Training selector_net should not take more than 1hr. Training details are given below.
+Selector net has been trained using Mask R-CNN outputs and the output masks of Mask R-CNN can highly vary depending on various implementations and even different hyperparameter in the same implementation. Hence, to get the true results of the method it is desirable to train the selector_net using the object detection and segmentation network that you are using. Training selector_net should not take more than 1hr. Training details are given below.
 
 To run the code on other datasets, change the structure of data same as DAVIS dataset then the same scripts can be used.
 
