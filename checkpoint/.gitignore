@@ -1,0 +1,4 @@
+gnore everything in this directory
+*.ckpt
+# Except this file
+!.gitignore
