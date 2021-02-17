@@ -19,7 +19,9 @@ To run the code you will be needing masks from Mask R-CNN and DAVIS dataset. The
 4. Change the python script name in `run.sh` to `eval_DAVIS_crit2.py` to evaluate using criterion 2. 
 5. Finally, run `eval_stage_3.py` using command below by giving relavent paths of masks generated using criterion 1 and criterion 2. 
 
-```python eval_stage_3.py -m1 results/STM_DAVIS_2019challenge -m2 results/STM_DAVIS_2019challenge2/ -r data/DAVIS/JPEGImages/480p/ -f set_file.txt```
+```
+python eval_stage_3.py -m1 results/STM_DAVIS_2019challenge -m2 results/STM_DAVIS_2019challenge2/ -r data/DAVIS/JPEGImages/480p/ -f set_file.txt
+```
 ### Note
 Selector net has been trained using Mask R-CNN outputs and the output masks of Mask R-CNN can highly vary depending on various implementations and even different hyperparameter in the same implementation. Hence, to get the true results of the method it is desirable to train the selector_net using the object detection and segmentation network that you are using. Training selector_net should not take more than 1hr. Training details are given below.
 
