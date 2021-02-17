@@ -6,6 +6,7 @@ import torchvision.models as models
 import torchvision
 from tqdm import tqdm
 from torchvision import transforms
+from model.models import resnet18
 
 class selector_net(nn.Module):
   def __init__(self):

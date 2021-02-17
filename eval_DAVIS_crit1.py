@@ -42,7 +42,7 @@ def get_arguments():
 
 args = get_arguments()
 
-pth_path = args.m#'STM_weights.pth'
+pth_path = args.m #'STM_weights.pth'
 GPU = args.g
 SET = args.s
 DATA_ROOT = args.D
@@ -244,7 +244,7 @@ for seq, V in enumerate(Testloader):
     num_frames = info['num_frames'][0].item()
     print('[{}]: num_frames: {}, num_objects: {}'.format(seq_name, num_frames, num_objects[0][0]))
     
-    pred, Es = Run_video(Fs, Ms, num_frames, num_objects, seq_name, Mem_every=5, Mem_number=None)
+    pred, Es = Run_video(Fs, Ms, num_frames, num_objects, seq_name, Mem_every=6, Mem_number=None)
         
     # Save results ######################
     test_path = os.path.join('./results', code_name, seq_name)

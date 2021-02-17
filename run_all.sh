@@ -1,11 +1,11 @@
 #!/bin/bash
 
-LIST_OF_VIDEOS="/home/vidit/models/UnVOS/STM/data/challenge/DAVIS"
+LIST_OF_VIDEOS="data/DAVIS/JPEGImages/480p"
 
 set `ls $LIST_OF_VIDEOS`
 
 for i in $*
 do
 	echo "evaluating ${i}"
-	python eval_DAVIS_crit1.py -g '1' -s challenge -D /home/vidit/models/UnVOS/STM/data/challenge/DAVIS  -v ${i}
+	python eval_DAVIS_crit1.py -g '2' -s challenge2 -D data/DAVIS  -v ${i}
 done

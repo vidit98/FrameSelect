@@ -18,8 +18,7 @@ import os
 import argparse
 import copy
 import sys
-sys.path.append('../')
-from helpers import *
+from model.helpers import *
  
 print('Space-time Memory Networks: initialized.')
  

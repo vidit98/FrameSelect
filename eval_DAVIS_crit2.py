@@ -41,7 +41,7 @@ def get_arguments():
 
 args = get_arguments()
 
-pth_path = args.m#'STM_weights.pth'
+pth_path = args.m #'STM_weights.pth'
 GPU = args.g
 SET = args.s
 DATA_ROOT = args.D
@@ -56,9 +56,6 @@ os.environ['CUDA_VISIBLE_DEVICES'] = GPU
 if torch.cuda.is_available():
     print('using Cuda devices, num:', torch.cuda.device_count())
 
-if VIZ:
-    print('--- Produce mask overaid video outputs. Evaluation will run slow.')
-    print('--- Require FFMPEG for encoding, Check folder ./viz')
 
 
 def remove_extra(pred):
@@ -232,7 +229,7 @@ if torch.cuda.is_available():
     model.cuda()
 model.eval() # turn-off BN
 
-pth_path = 'STM_weights.pth'
+
 print('Loading weights:', pth_path)
 model.load_state_dict(torch.load(pth_path))
 

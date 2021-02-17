@@ -11,7 +11,7 @@ from torch.optim import lr_scheduler
 from torch.utils.tensorboard import SummaryWriter
 import argparse
 
-from models.selector_net import selector_net
+from model.selector_net import selector_net
 import os
 import itertools
 import cv2
