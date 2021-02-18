@@ -28,6 +28,20 @@ Selector net has been trained using Mask R-CNN outputs and the output masks of M
 To run the code on other datasets, change the structure of datafiles to that of DAVIS dataset then the same scripts can be used.
 
 ## Training
+The training dataset needs to generated using DAVIS [TrainVal](https://davischallenge.org/davis2017/code.html#unsupervised) before training selector net. Follow the steps to generate dataset
+1. Generate masks using Mask R-CNN for each frames in the dataset.
+2. Generate masks using vanilla STM for each frames in the dataset.
+    a) Pass the ground truth frame as first frame
+    b) Use ground truth frames instead of criterion1/2 to compare Mask R-CNN ouput and STM output and then propogate frames.
+    c) The scripts `eval_DAVIS_crit1.py` can be used by replacing the selection criterion as explained b).
+3. Use the hungarian algorithm to assign the generated masks to the corresponding ground truth in the dataset(similar to this [code](https://github.com/vidit98/FrameSelect/blob/2f114c25eb869056a26d7a00ec2c5519419d3cfe/eval_DAVIS_crit1.py#L86))
+
+Run the following script
+```
+python train.py --train_dataset_path #path_to_davis_data --maskrcnn_dataset_path #path_to_maskrcnn_masks --stm_dataset_path #path_to_STM_masks
+```
+
+
 
 ## Precomputed Results
 
