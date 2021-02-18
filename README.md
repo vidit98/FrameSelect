@@ -9,6 +9,9 @@ README.md will be updated soon.
 ![](final.gif)
 
 ## Prerequisites
+pytorch >= 1.4
+
+python 3.6
 
 ## Inferencing
 To run the code you will be needing masks from Mask R-CNN and DAVIS dataset. The pre-trained weights of STM can be downloaded from [here](https://github.com/seoungwugoh/STM) and selector_net from [here](https://drive.google.com/file/d/1PRdYnrSgvHmfi9G85pPbqhD2Ns0nm4NS/view?usp=sharing). The output masks of Mask R-CNN should be numbered sequentially starting from 0 representing background. Select top 10 masks from the masks whose confidence score is more than 0.1. 
