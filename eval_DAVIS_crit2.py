@@ -25,7 +25,7 @@ import sys
 import random
  
 ### My libs
-from dataset import DAVIS_MO_Test
+from dataloader.dataset import DAVIS_MO_Test
 from model.stm import STM
 
 torch.set_grad_enabled(False) # Volatile

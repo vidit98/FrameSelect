@@ -10,7 +10,7 @@ from torch.optim import lr_scheduler
 from torch.utils.tensorboard import SummaryWriter
 import argparse
 
-from data.dataset_train import DAVIS_MO_Test
+from dataloader.dataset_train import DAVIS_MO_Test
 from model.models import resnet18
 from model.selector_net import selector_net
 
@@ -174,10 +174,12 @@ def get_scheduler(optimizer, opt):
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--train_dataset_path',
+parser.add_argument('--train_dataset_path',         #dadvis gt data training and val data path
           default='./data')
-parser.add_argument('--val_dataset_path',
-          default='./data')
+parser.add_argument('--maskrcnn_dataset_path',      # mask rcnn results for all frames
+          default='final_mrcnn')
+parser.add_argument('--stm_dataset_path',           #stm results without using mask rcnn 
+          default='STM/train')
 parser.add_argument('--load',
           default=0)
 parser.add_argument('--batch_size',
@@ -203,8 +205,9 @@ for key, val in vars(args).items():
   print("{:16} {}".format(key, val))
 
 
-test_loader = DAVIS_MO_Test(imset="val.txt")
-train_loader = DAVIS_MO_Test()
+train_loader = DAVIS_MO_Test(args.train_dataset_path ,'train.txt', args.stm_dataset_path, args.maskrcnn_dataset_path)
+test_loader = DAVIS_MO_Test(args.train_dataset_path ,'val.txt', args.stm_dataset_path, args.maskrcnn_dataset_path)
+
 print("Loaded")
 tr_dataloader = torch.utils.data.DataLoader(train_loader, batch_size=args.batch_size, shuffle=True, num_workers=2)
 te_dataloader = torch.utils.data.DataLoader(test_loader, batch_size=1, shuffle=True, num_workers=2)
